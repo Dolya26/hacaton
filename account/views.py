@@ -52,3 +52,14 @@ class LogoutView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response('Successfully logged out!', status=200)
+
+
+class RestorePasswordViews(APIView):
+        permission_classes = (permissions.AllowAny,)
+
+        def post(self, request):
+            serializer = serializers.RestorePasswordSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response('Password changed successfully!', status=200)
+
